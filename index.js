@@ -82,18 +82,10 @@ async function run() {
 
         //Post Reviews
         app.post('/reviews', async (req, res) => {
-            const name = req.body.name;
-            const description = req.body.description;
-            const rating = req.body.rating;
-            const img = req.files.image;
-            const imgData = img.data;
-            const encodedPic = imgData.toString('base64');
-            const imageBuffer = Buffer.from(encodedPic, 'base64');
-            const review = {
-                name, description, rating, image: imageBuffer
-            }
-            const result = await reviewsCollection.insertOne(review);
-            res.json(result);
+            const user = req.body
+            const result = await reviewsCollection.insertOne(user)
+            res.json(result)
+        
         });
 
         //Get Reviews
